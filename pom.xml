@@ -24,9 +24,19 @@
 
     <dependencies>
          <dependency>
-             <groupId>com.fluidops</groupId>
-             <artifactId>fedx</artifactId>
-             <version>3.0</version>
-         </dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.14</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fluidops</groupId>
+            <artifactId>fedx</artifactId>
+            <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>2.1</version>
+        </dependency>
     </dependencies>
 </project>

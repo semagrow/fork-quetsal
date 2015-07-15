@@ -55,8 +55,9 @@ public class ExecuteHibiscusQuery {
 		queries.add("PREFIX dct:<http://purl.org/dc/terms/>\n" +
 				"\n" +
 				"SELECT ?url WHERE {\n" +
+				" <http://agris.org/records/212312> dct:subject ?o. \n" +
 				"\n" +
-				"   ?url dct:subject <http://aims.fao.org/aos/agrovoc/c_3791>.\n" +
+				"   ?url dct:subject ?o.\n" +
 				"\n" +
 				"   ?url rdf:type <http://semagrow.eu/rdf#CrawledDocument> .\n" +
 				"\n" +
@@ -76,8 +77,8 @@ public class ExecuteHibiscusQuery {
 							tpsrces = tpsrces+ stmtToSources.get(stmt).size();
 							srces = srces + stmtToSources.get(stmt).size();
 						
-							//System.out.println("-----------\n"+stmt);
-							//System.out.println(stmtToSources.get(stmt));
+							System.out.println("-----------\n"+stmt);
+							System.out.println(stmtToSources.get(stmt));
 						}
 			System.out.println("Total Triple Pattern-wise sources selected: " +srces);
 
