@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import org.aksw.simba.quetzal.configuration.QuetzalConfig;
@@ -36,9 +37,9 @@ import com.fluidops.fedx.structures.Endpoint;
 public class ExecuteHibiscusQuery {
 	public static void main(String[] args) throws Exception {
 		long strtTime = System.currentTimeMillis();
-		String FedSummaries = "summaries/FedBench-HiBISCus.n3";
+		String FedSummaries = "summaries/FedBench-Fabricio.n3";
        //  String FedSummaries = "C://slices/Linked-SQ-DBpedia-Aidan.ttl";
-		String mode = "ASK_dominant";  //{ASK_dominant, Index_dominant}
+		String mode = "Index_dominant";  //{ASK_dominant, Index_dominant}
 		double commonPredThreshold = 0.33 ;  //considered a predicate as common predicate if it is presenet in 33% available data sources
 		QuetzalConfig.initialize(FedSummaries,mode,commonPredThreshold);  // must call this function only one time at the start to load configuration information. Please specify the FedSum mode. 
 		System.out.println("One time configuration loading time : "+ (System.currentTimeMillis()-strtTime));
@@ -50,6 +51,16 @@ public class ExecuteHibiscusQuery {
 		repo.initialize();
 		int tpsrces = 0; 
 		int count = 0;
+		queries = new LinkedList<String>();
+		queries.add("PREFIX dct:<http://purl.org/dc/terms/>\n" +
+				"\n" +
+				"SELECT ?url WHERE {\n" +
+				"\n" +
+				"   ?url dct:subject <http://aims.fao.org/aos/agrovoc/c_3791>.\n" +
+				"\n" +
+				"   ?url rdf:type <http://semagrow.eu/rdf#CrawledDocument> .\n" +
+				"\n" +
+				"}");
 		for (String query : queries)
 		{
 			System.out.println("-------------------------------------\n"+query);

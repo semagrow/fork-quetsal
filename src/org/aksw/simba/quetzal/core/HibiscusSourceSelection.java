@@ -531,7 +531,8 @@ public void cache_ASKselection(StatementPattern stmt)
 					 if(authIntersectionSet.size()==0)
 							authIntersectionSet = authUnionSet;
 						else
-						 authIntersectionSet.retainAll(authUnionSet);
+						 	computeIntersection(authIntersectionSet, authUnionSet);
+
 					    stmtToLstAuthorities.put(stmt, stmtSourceToAuthorities);
 				 }
 					for(HyperEdge outEdge: v.outEdges)
@@ -548,7 +549,7 @@ public void cache_ASKselection(StatementPattern stmt)
 						 if(authIntersectionSet.size()==0)
 								authIntersectionSet = authUnionSet;
 							else
-							 authIntersectionSet.retainAll(authUnionSet);
+							 computeIntersection(authIntersectionSet, authUnionSet);
 						    stmtToLstAuthorities.put(stmt, stmtSourceToAuthorities);
 						 
 					}
@@ -576,7 +577,7 @@ public void cache_ASKselection(StatementPattern stmt)
 					 if(authIntersectionSet.size()==0)
 							authIntersectionSet = authUnionSet;
 						else
-						 authIntersectionSet.retainAll(authUnionSet);
+						 computeIntersection(authIntersectionSet, authUnionSet);
 					    stmtToLstAuthorities.put(stmt, stmtSourceToAuthorities);
 					// System.out.println("InEdge: "+inEdge.subj+", "+inEdge.pred+", "+inEdge.obj+"\nInEdges Sources: "+stmtToSources.get( hyperEdgeToStmt.get(inEdge)));
 				 }
@@ -600,7 +601,7 @@ public void cache_ASKselection(StatementPattern stmt)
 					 if(authIntersectionSet.size()==0)
 							authIntersectionSet = authUnionSet;
 						else
-						 authIntersectionSet.retainAll(authUnionSet);
+						 computeIntersection(authIntersectionSet, authUnionSet);
 					    stmtToLstAuthorities.put(stmt, stmtSourceToAuthorities);
 				 }
 					for(HyperEdge outEdge: v.outEdges)
@@ -617,7 +618,7 @@ public void cache_ASKselection(StatementPattern stmt)
 						 if(authIntersectionSet.size()==0)
 								authIntersectionSet = authUnionSet;
 							else
-							 authIntersectionSet.retainAll(authUnionSet);
+							 computeIntersection(authIntersectionSet, authUnionSet);
 						    stmtToLstAuthorities.put(stmt, stmtSourceToAuthorities);
 						 
 					}
@@ -648,7 +649,7 @@ public void cache_ASKselection(StatementPattern stmt)
 					 if(authIntersectionSet.size()==0)
 							authIntersectionSet = authUnionSet;
 						else
-						 authIntersectionSet.retainAll(authUnionSet);
+						 computeIntersection(authIntersectionSet,authUnionSet);
 					    stmtToLstAuthorities.put(stmt, stmtSourceToAuthorities);
 				 }
 										
@@ -687,7 +688,7 @@ public void cache_ASKselection(StatementPattern stmt)
 			for(StatementSource src:stmtSourceToLstAuthorities.keySet())
 			{
 				ArrayList<String> srcAuthSet = stmtSourceToLstAuthorities.get(src);
-				srcAuthSet.retainAll(authIntersectionSet);
+				computeIntersection(srcAuthSet, authIntersectionSet);
 				if(srcAuthSet.size()==0)
 				{
 					List<StatementSource> sources = stmtToSources.get(stmt);
@@ -699,6 +700,14 @@ public void cache_ASKselection(StatementPattern stmt)
 		}
 		
 	}
+
+	public void computeIntersection(ArrayList<String> set1, ArrayList<String> set2) {
+		System.out.print("set1 = " + set1);
+		set1.retainAll(set2);
+		System.out.println(" set2 = " + set2 + " result = " + set1);
+	}
+
+
 	/**
 	 *  Get matching Subject authorities from a specific source for a triple pattern 
 	 * @param stmt Triple pattern
@@ -711,7 +720,7 @@ public void cache_ASKselection(StatementPattern stmt)
 
 	public ArrayList<String> FedSumD_getMatchingSbjAuthorities(StatementPattern stmt, StatementSource src) throws RepositoryException, MalformedQueryException, QueryEvaluationException 
 	{
-		String endPointUrl = "http://"+src.getEndpointID().replace("sparql_", "");
+		String endPointUrl = "http://"+src.getEndpointID().substring(7);
 		       endPointUrl = endPointUrl.replace("_", "/");
 		ArrayList<String> sbjAuthorities = new ArrayList<String>();
 		

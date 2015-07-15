@@ -1,0 +1,24 @@
+@prefix ds:<http://aksw.org/fedsum/>.
+
+#---------------------http://localhost:8890/sparql Summaries-------------------------------
+[] a ds:Service ;
+     ds:url   <http://4store.ipb.ac.rs:8102/sparql/> ;
+     ds:capability
+         [
+           ds:predicate  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> ;
+           ds:sbjAuthority <complhttp://agris.org> ;
+           ds:objAuthority <http://semagrow.eu/rdf#CrawledDocument>
+         ] ,
+         [
+           ds:predicate  <http://purl.org/dc/terms/subject> ;
+           ds:sbjAuthority <complhttp://agris.org> ;
+           ds:objAuthority <http://aims.fao.org>
+         ] .
+[] a ds:Service ;
+     ds:url   <http://202.45.139.84:10035/catalogs/fao/repositories/agris> ;
+     ds:capability
+         [
+           ds:predicate  <http://purl.org/dc/terms/subject> ;
+           ds:sbjAuthority <http://agris.org> ;
+           ds:objAuthority <http://aims.fao.org> ;
+         ] .
