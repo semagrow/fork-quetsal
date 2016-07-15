@@ -21,7 +21,20 @@
       </plugin>
     </plugins>
     </build>
-
+    <repositories>
+      <repository>
+        <snapshots>
+          <enabled>false</enabled>
+        </snapshots>
+        <id>central</id>
+        <name>Central Repository</name>
+        <url>https://repo.maven.apache.org/maven2</url>
+      </repository>
+  		<repository>
+  		    <id>jitpack.io</id>
+  		    <url>https://jitpack.io</url>
+  		</repository>
+  	</repositories>
     <dependencies>
          <dependency>
             <groupId>log4j</groupId>
@@ -29,8 +42,8 @@
             <version>1.2.14</version>
         </dependency>
         <dependency>
-            <groupId>com.fluidops</groupId>
-            <artifactId>fedx</artifactId>
+            <groupId>com.github.semagrow</groupId>
+            <artifactId>fork-fedX</artifactId>
             <version>3.0</version>
         </dependency>
         <dependency>
